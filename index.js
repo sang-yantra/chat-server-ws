@@ -7,7 +7,13 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded());
-
+app.use(
+  cors({
+    origin: ["https://chat-server-ms.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 const routes = express.Router();
 routes.get("/", function (req, res) {
   res.send("Welcome to chat server");
